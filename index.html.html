@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勤管家 - 專為 2～8 家門市中小型餐飲業打造的防錯合規排班 App</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef8ff',
+                            100: '#d9f0ff',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            750: '#0f172a',
+                            900: '#090d16'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;850&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">勤管家</span>
+                    <span class="block text-[10px] text-cyan-400 font-medium tracking-widest">餐飲合規排班系統</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-cyan-400 transition-colors">核心痛點</a>
+                <a href="#principles" class="hover:text-cyan-400 transition-colors">三大原則</a>
+                <a href="#modules" class="hover:text-cyan-400 transition-colors">功能模組</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition-colors">定價方案</a>
+                <a href="#comparison" class="hover:text-cyan-400 transition-colors">競品比較</a>
+                <a href="#faq" class="hover:text-cyan-400 transition-colors">常見問題</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#pricing" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                    立即預約展示
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3">
+            <a href="#features" class="block text-slate-300 hover:text-cyan-400 py-1">核心痛點</a>
+            <a href="#principles" class="block text-slate-300 hover:text-cyan-400 py-1">三大原則</a>
+            <a href="#modules" class="block text-slate-300 hover:text-cyan-400 py-1">功能模組</a>
+            <a href="#pricing" class="block text-slate-300 hover:text-cyan-400 py-1">定價方案</a>
+            <a href="#comparison" class="block text-slate-300 hover:text-cyan-400 py-1">競品比較</a>
+            <a href="#faq" class="block text-slate-300 hover:text-cyan-400 py-1">常見問題</a>
+            <div class="pt-2">
+                <a href="#pricing" class="block text-center bg-cyan-500 text-slate-950 font-bold py-2.5 rounded-xl">立即預約展示</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+        <!-- Glow background accents -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-semibold mb-6">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>專為 2～8 家門市中小型餐飲業量身打造</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+                    一個會主動提醒店長的<br class="hidden sm:inline">
+                    <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">合規排班 App</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
+                    一次買斷、永久擁有、拒絕每個月 SaaS 月租綁架！排班當下直接擋下違法班次，從源頭消除勞資爭議，讓勞檢不再是餐飲老闆的惡夢。
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#pricing" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5 text-center">
+                        <i class="fa-solid fa-rocket mr-2"></i> 了解限時買斷方案
+                    </a>
+                    <a href="#modules" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold px-8 py-4 rounded-xl transition-all text-center">
+                        <i class="fa-solid fa-circle-play mr-2 text-cyan-400"></i> 探索 22 條合規引擎
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-14 pt-10 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                        <div class="text-2xl md:text-3xl font-black text-cyan-400 mb-1">NT$ 19,000</div>
+                        <div class="text-xs text-slate-400">第一家門市一次買斷</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1">22 條</div>
+                        <div class="text-xs text-slate-400">勞基法合規檢核規則</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                        <div class="text-2xl md:text-3xl font-black text-cyan-400 mb-1">0 元</div>
+                        <div class="text-xs text-slate-400">手機推播訊息費用</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1">324 項</div>
+                        <div class="text-xs text-slate-400">API 自動化測試零漏洞</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-slate-900/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">Pain Points & Solution</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">為什麼中小型餐飲需要「勤管家」？</h3>
+                <p class="text-slate-400 mt-4">擺脫傳統群組與 Excel 亂象，迎向智慧合規的新時代。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Traditional Pain -->
+                <div class="bg-rose-950/20 border border-rose-900/40 rounded-2xl p-8 relative">
+                    <div class="absolute top-6 right-6 w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-rose-400 mb-4 flex items-center">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> 傳統 Line 群組與紙本排班痛點
+                    </h4>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-xmark text-rose-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>不小心觸法受罰：</strong>店長排班憑感覺，不小心排了「七休一違規」或「單日超過 12 小時」，勞檢一來直接吞罰單。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-xmark text-rose-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>SaaS 訂閱費沉重：</strong>每個月被按人頭或按月扣好幾千元，對中小型餐飲老闆來說是長期沈重開銷。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-xmark text-rose-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>薪資與假勤扯不清：</strong>店長常因薪資保密或計算與員工吵得不可開交，勞資對立嚴重。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-xmark text-rose-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>個資外洩風險高：</strong>員工身分證、電話、住址通通存放在來路不明的雲端系統裡。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Qin Guan Jia Solution -->
+                <div class="bg-cyan-950/20 border border-cyan-800/40 rounded-2xl p-8 relative">
+                    <div class="absolute top-6 right-6 w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-check text-lg"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-4 flex items-center">
+                        <i class="fa-solid fa-shield-check mr-2"></i> 「勤管家」專屬解決方案
+                    </h4>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>合規檢核直接擋死：</strong>達 BLOCK 等級違規班次無法儲存，確保班表 100% 符合勞基法，直接面對勞檢。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>一次買斷永久擁有：</strong>沒有每月訂閱壓力，類似購買 POS 機的心理帳戶，幫您省下大筆開銷。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>責任切割與 403 保密：</strong>系統不計算薪資、店長呼叫薪資一律回傳 403，從根源消弭薪資爭議。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span><strong>極致隱私保護：</strong>員工資料僅存代號與姓名，打卡後座標立即丟棄，贏得員工高度信任。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="principles" class="py-24 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">Core Principles</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">三大不可動搖的設計原則</h3>
+                <p class="text-slate-400 mt-4">堅持不妥協的架構設計，守護老闆與員工的權益。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Principle 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">1. 系統不計算薪資</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        系統僅輸出客觀事實（排班表、打卡時間、請假時數），具體金額由會計端於系統外結算後匯入，達到明確的責任切割與免去扣薪爭議。
+                    </p>
+                </div>
+
+                <!-- Principle 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">2. 員工個資極致保護</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        完全不儲存身分證字號、生日、地址、電話、病歷或 GPS 移動軌跡（打卡比對後即丟棄），極大化保護個人隱私並建立員工信賴。
+                    </p>
+                </div>
+
+                <!-- Principle 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">3. 排班合規「直接擋死」</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        達 BLOCK 等級違規班次無法儲存，且不提供「強制通過」例外通道，確保匯出班表皆可直接提交勞動檢查。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modules" class="py-24 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">Roles & Features</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">四大權限角色與核心模組亮點</h3>
+                <p class="text-slate-400 mt-4">嚴格的邊界控制與貼心的餐飲現場設計。</p>
+            </div>
+
+            <!-- Role Cards -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="text-cyan-400 font-bold mb-2 flex items-center"><i class="fa-solid fa-user mr-2"></i> 員工 (Staff)</div>
+                    <p class="text-sm text-slate-400">查看個人班表、WiFi 打卡、申請請假/換班、次月預休勾選、薪資確認無誤回報。</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="text-cyan-400 font-bold mb-2 flex items-center"><i class="fa-solid fa-user-tie mr-2"></i> 店長 (Manager)</div>
+                    <p class="text-sm text-slate-400">當日調度、團隊排班、審核待辦。<br><strong class="text-rose-400">※完全無法查看薪資（呼叫一律回傳 403）</strong>。</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="text-cyan-400 font-bold mb-2 flex items-center"><i class="fa-solid fa-user-gear mr-2"></i> 人資 (HR)</div>
+                    <p class="text-sm text-slate-400">跨門市總覽、無個資人員建檔、會計薪資明細匯入與解鎖、排班工時規則設定。</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="text-cyan-400 font-bold mb-2 flex items-center"><i class="fa-solid fa-shield-halved mr-2"></i> 管理者 (Admin)</div>
+                    <p class="text-sm text-slate-400">出勤紀錄修正（必填原因並自動通知員工）、帳號維護與全系統總覽。</p>
+                </div>
+            </div>
+
+            <!-- Feature Highlights Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+                    <div class="text-cyan-400 text-xl font-bold mb-3 flex items-center">
+                        <i class="fa-solid fa-clock-rotate-left mr-3"></i> 22 條合規檢核引擎
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        包含七休一、雙/四/八週變形工時、單日 12 小時上限、46/54 小時延長工時、輪班間隔 11 小時與未成年保護等，正兼職分流檢核。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+                    <div class="text-cyan-400 text-xl font-bold mb-3 flex items-center">
+                        <i class="fa-solid fa-wifi mr-3"></i> 混合式防呆打卡
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        員工/人資/管理者採 <strong>Wi-Fi 打卡</strong>；店長與跨店支援員工採 <strong>GPS (100公尺圍籬)</strong>。具 60 秒冷卻與下班二次確認防誤觸。
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+                    <div class="text-cyan-400 text-xl font-bold mb-3 flex items-center">
+                        <i class="fa-solid fa-list-check mr-3"></i> FIFO 補休與薪資對帳
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        補休獨立精確至 0.5 小時，核准時自動由最快到期加班時數扣抵。員工可線上檢視薪資明細並點選「確認無誤」或「有疑義留言」。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">Transparent Pricing</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">一次買斷制 ＋ 單次維護計費</h3>
+                <p class="text-slate-400 mt-4">拒絕月租綁架，把系統真正變成公司的固定資產。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- First Store Package -->
+                <div class="bg-gradient-to-b from-slate-900 to-slate-900/60 border-2 border-cyan-500 rounded-3xl p-8 sm:p-10 relative shadow-2xl shadow-cyan-500/10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 text-xs font-black uppercase px-4 py-1.5 rounded-full tracking-wider">
+                        熱門首選 / 基礎方案
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">第 1 家門市基本版</h4>
+                    <p class="text-slate-400 text-sm mb-6">完整永久授權與合規系統建置</p>
+                    
+                    <div class="flex items-baseline mb-8">
+                        <span class="text-4xl sm:text-5xl font-black text-white">NT$ 19,000</span>
+                        <span class="text-slate-400 ml-2">/ 一次買斷</span>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-300 text-sm mb-10">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-3"><span>含永久軟體授權與基礎部署</span></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-3"><span>門市 Wi-Fi / GPS 打卡環境設定</span></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-3"><span>22 條排班合規檢核引擎</span></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-3"><span>0 元自建 Web Push 手機推播</span></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-3"><span>含 3 個月系統原生物件免費保固</span></i></li>
+                    </ul>
+
+                    <a href="#contact" class="block w-full text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-4 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
+                        立即預約導入第 1 家店
+                    </a>
+                </div>
+
+                <!-- Multi Store & Hosting Package -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-10 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-2">連鎖多店與後續維護</h4>
+                        <p class="text-slate-400 text-sm mb-6">彈性擴充與超低主機維護負擔</p>
+
+                        <div class="space-y-6">
+                            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800">
+                                <div class="text-cyan-400 font-bold text-lg mb-1">同一品牌再開店</div>
+                                <div class="text-2xl font-extrabold text-white">NT$ 5,000 <span class="text-sm font-normal text-slate-400">/ 每加一店</span></div>
+                                <p class="text-xs text-slate-400 mt-1">設定費遠低於第一家店，總部統一跨店總覽。</p>
+                            </div>
+
+                            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800">
+                                <div class="text-cyan-400 font-bold text-lg mb-1">雲端主機與維護費用</div>
+                                <div class="text-xl font-bold text-white">約 US$ 7.25 / 月 <span class="text-sm font-normal text-slate-400">(合台幣約 230 元)</span></div>
+                                <p class="text-xs text-slate-400 mt-1">由店家自行負擔雲端主機費；保固期外遠端設定支援僅 NT$ 800 / 次起。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+                        <span class="text-xs text-slate-400">
+                            💡 試算：5 家門市買斷合計僅 NT$ 39,000，無每月沉重 SaaS 訂閱負擔！
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-24 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">System Comparison</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">勤管家 vs 市場主流人資系統</h3>
+                <p class="text-slate-400 mt-4">專為中小型餐飲設計，拒絕大而無當的繁雜功能與高昂月費。</p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-800 bg-slate-900">
+                            <th class="p-4 font-bold text-slate-300">比較維度</th>
+                            <th class="p-4 font-bold text-cyan-400 bg-cyan-950/30">勤管家（餐飲薪動能）</th>
+                            <th class="p-4 font-bold text-slate-300">104 企業大師 / HR Max</th>
+                            <th class="p-4 font-bold text-slate-300">文中資訊 (NHRS/CHRS)</th>
+                            <th class="p-4 font-bold text-slate-300">Femas HR 雲端人資</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4 font-medium text-white">目標客群</td>
+                            <td class="p-4 bg-cyan-950/10 text-cyan-300 font-semibold">2～8 家門市中小型餐飲業</td>
+                            <td class="p-4">中小企業 SaaS / 中大型企業</td>
+                            <td class="p-4">中大型企業 / 地端與雲端雙軌</td>
+                            <td class="p-4">連鎖餐飲、製造業多據點</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium text-white">商業模式</td>
+                            <td class="p-4 bg-cyan-950/10 text-cyan-300 font-semibold">一次買斷 ＋ 單次維護（免月租）</td>
+                            <td class="p-4">SaaS 訂閱制（依人數/模組計費）</td>
+                            <td class="p-4">SaaS 訂閱 / 傳統地端授權買斷</td>
+                            <td class="p-4">SaaS 訂閱制（按月/季/年繳）</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium text-white">薪資責任切割</td>
+                            <td class="p-4 bg-cyan-950/10 text-cyan-300 font-semibold">不算薪資，僅輸出事實由會計匯入</td>
+                            <td class="p-4">連動考勤自動計算薪資、勞健保</td>
+                            <td class="p-4">深度財會 ERP 無縫自動拋轉</td>
+                            <td class="p-4">3 分鐘快速算薪與稅務申報</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium text-white">合規防呆機制</td>
+                            <td class="p-4 bg-cyan-950/10 text-cyan-300 font-semibold">22 條規則違規直接擋死（無例外）</td>
+                            <td class="p-4">內建自動更新合規雷達</td>
+                            <td class="p-4">內建勞動檢查專區與工時查核</td>
+                            <td class="p-4">變形工時檢核與後台自動升級</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium text-white">隱私與個資保護</td>
+                            <td class="p-4 bg-cyan-950/10 text-cyan-300 font-semibold">僅存代號姓名，不存身分證與GPS軌跡</td>
+                            <td class="p-4">ISO 國際資安與加密認證</td>
+                            <td class="p-4">資料庫加密模組與權限架構</td>
+                            <td class="p-4">AWS 機房與 SSL 256-bit 加密</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-cyan-400 text-sm font-bold uppercase tracking-widest mb-3">FAQ</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">常見問題解答</h3>
+                <p class="text-slate-400 mt-4">解答您對於勤管家系統導入與運作的所有疑問。</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h4 class="text-lg font-bold text-white mb-2">Q1：為什麼系統設計「不計算薪資」？這樣會不會很不方便？</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        餐飲業最容易引發勞資爭議的往往是「扣薪計算與加班費認定」。勤管家採責任切割，系統只客觀輸出「出勤事實（打卡時間、請假時數、排班）」給會計端，由會計在系統外結算後匯入，不僅免除店長算錯薪資或扣薪引發的員工爭議，也保護店長專心拚營業額。
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h4 class="text-lg font-bold text-white mb-2">Q2：買斷制之後，如果遇到勞基法修法或系統更新該怎麼辦？</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        我們提供 3 個月完整保固期。保固期外，我們提供彈性的「單次維護計費（NT$ 800起）」或選購「年度維護方案」，讓您可以隨時以極低成本維持系統與法規同步，依然遠比每個月繳交高額 SaaS 訂閱費划算。
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h4 class="text-lg font-bold text-white mb-2">Q3：店長真的完全無法看到薪資嗎？</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        是的！系統後端強制控管安全邊界，店長權限呼叫任何薪資端點一律回傳 403 錯誤，徹底落實餐飲業極為重要的薪資保密原則，防止店長與員工私下比較薪資造成管理困擾。
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h4 class="text-lg font-bold text-white mb-2">Q4：打卡機制可以根據我們的門市狀況客製調整嗎？</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        可以的。勤管家預設員工/人資/管理者使用 Wi-Fi 打卡，店長與支援員工使用 GPS（100公尺圍籬）。我們可根據您的業主實際營運需求彈性進行環境設定與調整。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate-900 border-t border-slate-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 mb-12 items-center">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500 flex items-center justify-center text-slate-950 font-bold">
+                            <i class="fa-solid fa-shield-halved text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-black text-white">勤管家</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-md">
+                        專為 2～8 家門市中小型餐飲業打造的合規排班系統。一次買斷、拒絕月租，幫店長擋下勞檢罰單，守護餐飲業美好未來。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800">
+                    <h4 class="text-xl font-bold text-white mb-4">立即預約 15 分鐘系統線上展示</h4>
+                    <form onsubmit="event.preventDefault(); alert('感謝您的預約！專人將於 24 小時內與您聯繫。');" class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="您的姓名 / 稱謂" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="聯絡電話" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="門市店數 (例如: 3家門市)" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
+                            送出預約申請
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                &copy; 2026 勤管家 (Qin Guan Jia) 餐飲排班系統. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
